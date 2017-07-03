@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+\x0D\x0A<!DOCTYPE property-group PUBLIC "PropertyGro
+                                                   up.dtd" "PropertyGroup.dtd">
+\x0D\x0A
+<property-group name="datastore">
+	\x0D\x0A
+	<property name="Delta_Location">/project/scac/dev/staging_zone/10004_aot_vot_polk_vin/delta</property>
+	\x0D\x0A
+	<property name="Delta_Staging_Location">/project/scac/dev/staging_zone/10004_aot_vot_polk_vin/del
+		ta_staging</property>
+	\x0D\x0A
+	<property name="dscDB">10004_aot_vot_polk_qa_lz_db</property>
+	\x0D\x0A
+	<property name="opsDB">
+		scac_dev_ops_db</
+		property>\x0D\x0A
+		<property name="stagingDB">10004_aot_vot_polk_vin_dev_sz_scac_db</property>
+		\x0D\x0A
+		<property name="transformDB">10004_aot_vot_polk_dev_tz_scac_db</property>
+		\x0D\x0A
+		<property name="transformDbRootPath">/project/scac/dev/transform_zone/standardized_data/10004_aot_v
+			ot_polk/10004_aot_vot_polk_dev_tz_scac_db/</property>
+		\x0D\x0A
+		<property name="triggerFolderDropLocation">/project/scac/dev/filewatcher/10004_ao
+			t_vot_polk_vin/</property>
+		\x0D\x0A
+</property-group>
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+\x0D\x0A<!DOCTYPE property-group PUBLIC "PropertyGro
+                                                   up.dtd" "PropertyGroup.dtd">
+\x0D\x0A
+<property-group name="environment">
+	\x0D\x0A
+	<property name="DataStageLoginPasswd">
+		7aYhcPGpOTVAjTPtOI2pew==<
+		/property>\x0D\x0A
+		<property name="DataStageLoginUser">iapxhtam</property>
+		\x0D\x0A
+		<property name="DataStageServer">
+			fcas2324.md4q.ford.com</
+			property>\x0D\x0A
+			<property name="DataStage_TriggerFile">/ford/proj/dstage/Projects/IASC_AM_DEV/triggerfiles</property>
+			\x0D\x0A
+			<property na me="DeltaClassName">org.ford.dtsf.deltaprocess.business.DeltaWithoutPK</property>
+			\x0D\x0A
+			<property name="Hadoop_DataStage_HandShakeFile">HDP-1
+				0004-AOT-VOT-POLK-VIN.dat</property>
+			\x0D\x0A
+			<property name="appname">AOT_VOT_POLK_VIN</property>
+			\x0D\x0A
+			<property name="datapermission">dr
+				wx------</property>
+			\x0D\x0A
+			<property name="delimiter">1</property>
+			\x0D\x0A
+			<property name="encryptkey">SFEu41fnAnY0+XR9uGVcmg==</property>
+			\
+			x0D\x0A
+			<property name="environmentname">dev</property>
+			\x0D\x0A
+			<property name="fromEmailAddress">SCACNEML@ford.com</property>
+			\x0D\x0A
+			<p roperty name="hbasenamespace">scac_dev
+		</property>
+		\x0D\x0A
+		<property name="hivehome">/usr/hdp/2.3.2.0-2950/hive</property>
+		\x0D\x0A
+		<property name="hiveurl">jdbc:hive2://hpchdd2.hpc.ford.com:10003/default;principal=hive/hpchdd2.hpc.ford.com@HPC.FORD.COM</property>
+		\x0D\x0A
+		<property na me="hpcurl">hdfs://hpchdd2.hpc.ford.com:8020</property>
+		\x0D\x0A
+		<property name="isDatePartitioned">true</property>
+		\x0D\x0A
+		<property
+			name="queuename">scac</property>
+		\x0D\x0A
+		<property name="sourcecodepermission">drwxrwxrwx</property>
+		\x0D\x0A
+		<property name="tmpdir">/s/iapxhtam/ao
+			t_vot_polk_vin_tmp</property>
+		\x0D\x0A
+		<property name="toEmailAddress">SCA-C_SUCCESS_DEV@bulkmail.ford.com</property>
+		\x0D\x0A
+		<property name="username">iapxhtam</property>
+		\x0D\x0A
+</property-group>
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+\x0D\x0A<!DOCTYPE property-group PUBLIC "PropertyGro
+                                                   up.dtd" "PropertyGroup.dtd">
+\x0D\x0A
+<property-group name="hpc">
+	\x0D\x0A
+	<property name="password">C://Hadoop//iapxhtam.keytab</property>
+	\x0D\x0
+	A
+	<property name="url">hdfs://hpchdd2.hpc.ford.com:8020</property>
+	\x0D\x0A
+	<property name="username">iapxhtam@HPC.FORD.COM</property>
+	\x0D\x0
+	A
+</property-group>
