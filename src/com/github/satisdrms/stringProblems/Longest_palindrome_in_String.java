@@ -1,4 +1,4 @@
-package com.github.satisdrms.string_work;
+package com.github.satisdrms.stringProblems;
 
 public class Longest_palindrome_in_String {
 	public static String lpalin="";

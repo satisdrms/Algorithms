@@ -1,4 +1,4 @@
-package com.github.satisdrms.string_work;
+package com.github.satisdrms.stringProblems;
 
 public class String_questions {
 	public static void main(String[] args) {

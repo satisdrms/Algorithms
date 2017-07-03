@@ -1,4 +1,4 @@
-package com.github.satisdrms.string_work;
+package com.github.satisdrms.stringProblems;
 
 public class str_sort implements Comparable<str_sort> {
 

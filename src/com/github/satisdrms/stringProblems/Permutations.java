@@ -1,4 +1,4 @@
-package com.github.satisdrms.string_work;
+package com.github.satisdrms.stringProblems;
 
 import java.util.HashMap;
 import java.util.HashSet;
