@@ -1,0 +1,10 @@
+package com.satisdrms.CTCI;
+
+public class Topic_19_BitManip {
+
+	public static void main(String[] args) {
+		
+
+	}
+
+}

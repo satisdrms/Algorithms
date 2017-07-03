@@ -5,33 +5,6 @@ import java.util.LinkedList;
 
 //Given a directed graph, design an algorithm to find out 
 //whether there is a route between two nodes.
-class GraphNode {
-	int d;
-	LinkedList<GraphNode> adjacentNodes;
-	State s = State.UnVisited;
-
-	GraphNode(int d) {
-		this.d = d;
-		adjacentNodes = new LinkedList<GraphNode>();
-	}
-
-	public void addAdjacent(GraphNode jth) {
-		adjacentNodes.add(jth);
-	}
-
-	private GraphNode existsNode(int i) {
-		for (GraphNode g : adjacentNodes) {
-			if (g.d == i)
-				return g;
-		}
-		return null;
-	}
-
-	public LinkedList<GraphNode> getAdjacentNodes() {
-		return adjacentNodes;
-	}
-
-}
 
 class Graph {
 
