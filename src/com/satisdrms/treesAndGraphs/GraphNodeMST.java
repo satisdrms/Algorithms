@@ -1,22 +1,25 @@
 package com.satisdrms.treesAndGraphs;
 
-import java.util.LinkedList;
-import java.util.List;
-
-public class GraphNodeMST {
+public class GraphNodeMST implements Comparable<GraphNodeMST> {
 
 	int d;
-	List<Edge> edges;
 	boolean isVisited;
 
 	public GraphNodeMST(int d) {
 		this.d = d;
-		edges = new LinkedList<Edge>();
 		isVisited = false;
 	}
 
-	public void addAdjacent(GraphNodeMST jth, int weight) {
-		edges.add(new Edge(this, jth, weight));
+	@Override
+	public int compareTo(GraphNodeMST o) {
+		// TODO Auto-generated method stub
+		return this.d - o.d;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		GraphNodeMST src = (GraphNodeMST) obj;
+		return src.d == this.d;
 	}
 
 }
