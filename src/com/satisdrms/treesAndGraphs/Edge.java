@@ -30,4 +30,10 @@ public class Edge implements Comparable<Edge> {
 			return start;
 	}
 
+	@Override
+	public int hashCode() {
+		Integer hash = weight + start.d + end.d;
+		return hash.hashCode();
+	}
+
 }

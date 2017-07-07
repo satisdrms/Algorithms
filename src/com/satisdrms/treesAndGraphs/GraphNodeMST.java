@@ -12,7 +12,6 @@ public class GraphNodeMST implements Comparable<GraphNodeMST> {
 
 	@Override
 	public int compareTo(GraphNodeMST o) {
-		// TODO Auto-generated method stub
 		return this.d - o.d;
 	}
 
@@ -20,6 +19,12 @@ public class GraphNodeMST implements Comparable<GraphNodeMST> {
 	public boolean equals(Object obj) {
 		GraphNodeMST src = (GraphNodeMST) obj;
 		return src.d == this.d;
+	}
+
+	@Override
+	public int hashCode() {
+		Integer i = d;
+		return i.hashCode();
 	}
 
 }

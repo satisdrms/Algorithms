@@ -7,16 +7,13 @@ import java.util.LinkedList;
 //Minimum Spanning tree for an undirected graph
 
 class MST {
-	HashMap<GraphNodeMST, Edge> tree;
 	HashMap<Integer, GraphNodeMST> vertices;
 	LinkedList<Edge> edges;
 	HashMap<GraphNodeMST, LinkedList<Edge>> minspttree;
 
 	public MST() {
-		tree = new HashMap<GraphNodeMST, Edge>();
 		vertices = new HashMap<Integer, GraphNodeMST>();
 		edges = new LinkedList<Edge>();
-
 		minspttree = new HashMap<GraphNodeMST, LinkedList<Edge>>();
 	}
 
@@ -42,15 +39,20 @@ class MST {
 						vertices.put(j, end);
 					}
 					Edge e = new Edge(start, end, graph[i][j]);
-					if (!edges.contains(e)) {
+					if (!edges.contains(e))
 						edges.add(e);
-					} else
-						System.out.println("edge between " + e.start.d
-								+ " and " + e.end.d + " exists");
+					// else
+					// System.out.println("edge between " + e.start.d+ " and " +
+					// e.end.d + " exists");
 					// tree.put(start, e);
 				}
 			}
 		}
+		// for (Edge e : edges) {
+		// System.out.println(e.start.d + " is connected to edge with weight "
+		// + e.weight + " to the node " + e.end.d);
+		// }
+
 	}
 
 	public void printVertex(int v) {
@@ -60,57 +62,84 @@ class MST {
 	}
 
 	public void createMST() {
-		@SuppressWarnings("unchecked")
-		LinkedList<Edge> sortEdges = (LinkedList<Edge>) edges.clone();
-		Collections.sort(sortEdges);
-		for (Edge e : sortEdges) {
-			resetNodesVisitStatus();
+		Collections.sort(edges);
+		// printObj(edges);printObj(sortEdges);
 
-			if (!cycleExistsInMST(e))
-				addEdgeToGraph(minspttree, e);
+		for (Edge e : edges) {
+			// System.out.println("edge is "+e.weight);
+			resetNodesVisitStatus();
+			addEdgeToGraph(minspttree, e);
+			if (cycleExistsInMST(e)) {
+				removeEdgeFromGraph(minspttree, e);
+				System.out.println(e.start.d
+						+ " is connected to edge with weight " + e.weight
+						+ " to the node " + e.end.d + " size is "
+						+ minspttree.size());
+			}
+			printMST(minspttree);
 		}
-		printMST();
+		// printMST(minspttree);
 	}
 
-	private void printMST() {
+	private void printObj(LinkedList<Edge> edges) {
+		System.out.println("----------a Edge");
+		Collections.sort(edges);
+		for (Edge e : edges) {
+			System.out.println(e);
+		}
+
+	}
+
+	private void printMST(HashMap<GraphNodeMST, LinkedList<Edge>> tree) {
 		resetNodesVisitStatus();
-		System.out.println(minspttree.size());
-		for (GraphNodeMST g : minspttree.keySet()) {
-			System.out.println("the node is " + g.d + " and the edges are ");
-			for (Edge e : minspttree.get(g)) {
-				System.out.println("connected to " + e.weight);
+		System.out.println("---------printing a tree  " + tree.size());
+		LinkedList<String> sed = new LinkedList<String>();
+		for (GraphNodeMST g : tree.keySet()) {
+			// System.out.println("the node is " + g.d + " and the edges are ");
+			for (Edge e : tree.get(g)) {
+				String str = "nodes " + e.start.d + " and " + e.end.d
+						+ " are connected with weight " + e.weight;
+				if (!sed.contains(str)) {
+					sed.add(str);
+				}
 			}
+		}
+		for (String s : sed) {
+			System.out.println(s);
 		}
 	}
 
 	/* Check whether a cycle will be formed by adding this node */
 	private boolean cycleExistsInMST(Edge e) {
-		@SuppressWarnings("unchecked")
-		HashMap<GraphNodeMST, LinkedList<Edge>> cyclemst = (HashMap<GraphNodeMST, LinkedList<Edge>>) minspttree
-				.clone();
-		addEdgeToGraph(cyclemst, e);
 
-		if (cyclemst.size() == 0)
-			return true;
+		// printMST(cyclemst);
+		if (minspttree.size() == 0)
+			return false;
 		else {
-			for (GraphNodeMST g : cyclemst.keySet()) {
+			for (GraphNodeMST g : minspttree.keySet()) {
 				if (!g.isVisited) {
-					g.isVisited = true;
 					LinkedList<GraphNodeMST> connectedVertices = new LinkedList<GraphNodeMST>();
 					connectedVertices.add(g);
+					GraphNodeMST previous = null;
 					while (!connectedVertices.isEmpty()) {
 						GraphNodeMST vertex = connectedVertices.remove();
-						for (Edge ed : cyclemst.get(vertex)) {
+						vertex.isVisited = true;
+						for (Edge ed : minspttree.get(vertex)) {
 							GraphNodeMST otherEdge = ed.getOtherVertex(vertex);
-							if (otherEdge.isVisited)
-								return false;
-							connectedVertices.add(otherEdge);
+							if (previous == null || !otherEdge.equals(previous)) {
+								if (otherEdge.isVisited)
+									return true;
+								if (!connectedVertices.contains(otherEdge)) {
+									connectedVertices.add(otherEdge);
+								}
+							}
 						}
+						previous = vertex;
 					}
 				}
 			}
 		}
-		return true;
+		return false;
 	}
 
 	private void addEdgeToGraph(HashMap<GraphNodeMST, LinkedList<Edge>> graph,
@@ -121,6 +150,7 @@ class MST {
 			edgeList.add(e);
 		} else {
 			LinkedList<Edge> edgeList = new LinkedList<Edge>();
+			edgeList.add(e);
 			graph.put(e.start, edgeList);
 		}
 
@@ -129,14 +159,27 @@ class MST {
 			edgeList.add(e);
 		} else {
 			LinkedList<Edge> edgeList = new LinkedList<Edge>();
+			edgeList.add(e);
 			graph.put(e.end, edgeList);
 		}
+		// printMST(graph);
 
 	}
 
-	private void addEdgetoMST(Edge e) {
-		// minspttree
+	private void removeEdgeFromGraph(
+			HashMap<GraphNodeMST, LinkedList<Edge>> graph, Edge e) {
+		GraphNodeMST start = e.start;
+		GraphNodeMST end = e.end;
 
+		if (graph.get(start).size() > 1)
+			graph.get(start).remove(e);
+		else
+			graph.remove(start);
+
+		if (graph.get(end).size() > 1)
+			graph.get(end).remove(e);
+		else
+			graph.remove(end);
 	}
 
 	private void resetNodesVisitStatus() {
@@ -152,6 +195,16 @@ public class MinimumSpanningTree {
 			{ 0, 0, 7, 0, 9, 14, 0, 0, 0 }, { 0, 0, 0, 9, 0, 10, 0, 0, 0 },
 			{ 0, 0, 4, 14, 10, 0, 2, 0, 0 }, { 0, 0, 0, 0, 0, 2, 0, 1, 6 },
 			{ 8, 11, 0, 0, 0, 0, 1, 0, 7 }, { 0, 0, 2, 0, 0, 0, 6, 7, 0 } };
+
+	// { 0, 4, 0, 0, 0, 0, 0, 8, 0 },
+	// { 4, 0, 8, 0, 0, 0, 0, 11, 0 },
+	// { 0, 8, 0, 7, 0, 4, 0, 0, 2 },
+	// { 0, 0, 7, 0, 9, 14, 0, 0, 0 },
+	// { 0, 0, 0, 9, 0, 10, 0, 0, 0 },
+	// { 0, 0, 4, 14, 10, 0, 2, 0, 0 },
+	// { 0, 0, 0, 0, 0, 2, 0, 1, 6 },
+	// { 8, 11, 0, 0, 0, 0, 1, 0, 7 },
+	// { 0, 0, 2, 0, 0, 0, 6, 7, 0 } };
 
 	public static void main(String[] args) {
 		MST minspt = new MST();
