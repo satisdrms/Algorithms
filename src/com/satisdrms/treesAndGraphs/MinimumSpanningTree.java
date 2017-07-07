@@ -9,12 +9,12 @@ import java.util.LinkedList;
 class MST {
 	HashMap<Integer, GraphNodeMST> vertices;
 	LinkedList<Edge> edges;
-	HashMap<GraphNodeMST, LinkedList<Edge>> minspttree;
+	HashMap<GraphNodeMST, LinkedList<Edge>> minspntree;
 
 	public MST() {
 		vertices = new HashMap<Integer, GraphNodeMST>();
 		edges = new LinkedList<Edge>();
-		minspttree = new HashMap<GraphNodeMST, LinkedList<Edge>>();
+		minspntree = new HashMap<GraphNodeMST, LinkedList<Edge>>();
 	}
 
 	public void insert(GraphNodeMST node) {
@@ -68,15 +68,15 @@ class MST {
 		for (Edge e : edges) {
 			// System.out.println("edge is "+e.weight);
 			resetNodesVisitStatus();
-			addEdgeToGraph(minspttree, e);
+			addEdgeToGraph(minspntree, e);
 			if (cycleExistsInMST(e)) {
-				removeEdgeFromGraph(minspttree, e);
+				removeEdgeFromGraph(minspntree, e);
 				System.out.println(e.start.d
 						+ " is connected to edge with weight " + e.weight
 						+ " to the node " + e.end.d + " size is "
-						+ minspttree.size());
+						+ minspntree.size());
 			}
-			printMST(minspttree);
+			printMST(minspntree);
 		}
 		// printMST(minspttree);
 	}
@@ -113,10 +113,10 @@ class MST {
 	private boolean cycleExistsInMST(Edge e) {
 
 		// printMST(cyclemst);
-		if (minspttree.size() == 0)
+		if (minspntree.size() == 0)
 			return false;
 		else {
-			for (GraphNodeMST g : minspttree.keySet()) {
+			for (GraphNodeMST g : minspntree.keySet()) {
 				if (!g.isVisited) {
 					LinkedList<GraphNodeMST> connectedVertices = new LinkedList<GraphNodeMST>();
 					connectedVertices.add(g);
@@ -124,7 +124,7 @@ class MST {
 					while (!connectedVertices.isEmpty()) {
 						GraphNodeMST vertex = connectedVertices.remove();
 						vertex.isVisited = true;
-						for (Edge ed : minspttree.get(vertex)) {
+						for (Edge ed : minspntree.get(vertex)) {
 							GraphNodeMST otherEdge = ed.getOtherVertex(vertex);
 							if (previous == null || !otherEdge.equals(previous)) {
 								if (otherEdge.isVisited)
