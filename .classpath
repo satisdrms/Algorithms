@@ -11,6 +11,9 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/ssubra67/SCA-C/framework_mssap/spark-assembly-1.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sathish/Cracking_Code/spark-assembly_2.10-1.6.0-cdh5.11.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sathish/Cracking_Code/jackson-databind-2.9.0.pr4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sathish/Cracking_Code/jackson-mapper-asl-1.9.13.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sathish/Cracking_Code/jackson-core-2.9.0.pr4.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
