@@ -71,14 +71,14 @@ class MST {
 			addEdgeToGraph(minspntree, e);
 			if (cycleExistsInMST(e)) {
 				removeEdgeFromGraph(minspntree, e);
-				System.out.println(e.start.d
-						+ " is connected to edge with weight " + e.weight
-						+ " to the node " + e.end.d + " size is "
-						+ minspntree.size());
+				// System.out.println(e.start.d+
+				// " is connected to edge with weight " + e.weight+
+				// " to the node " + e.end.d + " size is "+ minspntree.size());
 			}
-			printMST(minspntree);
+			// printMST(minspntree);
 		}
-		// printMST(minspttree);
+		System.out.println("The MST is ");
+		printMST(minspntree);
 	}
 
 	private void printObj(LinkedList<Edge> edges) {
@@ -92,7 +92,7 @@ class MST {
 
 	private void printMST(HashMap<GraphNodeMST, LinkedList<Edge>> tree) {
 		resetNodesVisitStatus();
-		System.out.println("---------printing a tree  " + tree.size());
+		//System.out.println("---------printing a tree  " + tree.size());
 		LinkedList<String> sed = new LinkedList<String>();
 		for (GraphNodeMST g : tree.keySet()) {
 			// System.out.println("the node is " + g.d + " and the edges are ");
