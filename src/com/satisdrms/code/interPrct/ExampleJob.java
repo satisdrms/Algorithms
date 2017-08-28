@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.apache.spark.SparkConf;
+/*import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
@@ -19,9 +19,9 @@ import org.apache.spark.sql.SQLContext;
 import com.google.common.base.Optional;
 
 import scala.Tuple2;
-
+*/
 public class ExampleJob {
-	private static JavaSparkContext sc;
+/*	private static JavaSparkContext sc;
 	private static SQLContext s=new SQLContext(sc);
 	public ExampleJob(JavaSparkContext sc) {
 		ExampleJob.sc = sc;
@@ -130,5 +130,5 @@ public class ExampleJob {
 		JavaPairRDD<String, String> output_rdd = job.run(args[0], args[1]);
 		//output_rdd.saveAsHadoopFile(args[2], String.class, String.class,TextOutputFormat.class);
 		sc.close();
-	}
+	}*/
 }
