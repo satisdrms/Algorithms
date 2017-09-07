@@ -23,6 +23,12 @@ class waitDie extends Thread {
 
 	public void run_UsingSynChronized() {
 		synchronized (aString) {
+			try {
+				aString.wait();
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			for (int i = 0; i < 5; i++) {
 				System.out.println("Printing common String " + aString + " by "
 						+ s + " with priority " + p);
@@ -56,7 +62,7 @@ class waitDie extends Thread {
 				}
 				lock.unlock();
 			} else {
-				System.out.println("Already locked and skipping for "+s);
+				System.out.println("Already locked and skipping for " + s);
 			}
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -71,14 +77,36 @@ public class Topic_19_ThreadsLocks_EX4 {
 		// Resource a=new Resource();
 
 		waitDie a = new waitDie("a");
-		a.start();
+		//a.start();
 
 		waitDie b = new waitDie("b");
-		b.start();
+		//b.start();
 
 		waitDie c = new waitDie("c");
-		c.start();
+	//	c.start();
+	
+		final Object obj = new Object();
+		final Object obj1 = new Object();
+		
+		Thread t1 = new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				
+				synchronized (this) {
+					try {
+						this.wait();
+						
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+
+			}
+		});
+		t1.interrupt();
+		t1.start();
 
 	}
-
 }
